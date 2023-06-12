@@ -1,0 +1,50 @@
+{% extends 'todo_app/base.html' %}
+
+{% block page_header %}
+    <h3>{{ list }}</h3>
+    <small><i>У вас {{ count }} невыполненн{{count|pluralize:"ая,ых" }} зада{{count|pluralize:"ча,ч"}}</i></small>
+{% endblock page_header %}
+
+
+{% block content %}
+    <div class="mb-2">
+        <a href="{% url 'todo_app:add_task' list.id %}" class="btn btn-primary">Создать новую задачу</a>
+        <a href="{% url 'todo_app:delete_completed' list.id %}" class="btn btn-primary">Удалить выполненные</a>
+    </div>
+    <div class="list-group">
+        {% for task in tasks %}
+            {% if task.complete %}
+            <div class="list-group-item-light list-group-item list-group-item-action text-center">
+                <a href="{% url 'todo_app:sts_invert' task.id %}" class="status completed btn_link"></a>
+                <a href="{% url 'todo_app:task_info' task.id %}" class="stretched-link text-decoration-none text-reset">
+                    <del>{{ task }}</del>
+                </a>
+                <a href="{% url 'todo_app:delete_task' task.id%}" class="close btn_link" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </a>
+                <a href="{% url 'todo_app:edit_task' task.id%}" class="mr-3 edit btn_link">
+                    <span class="material-icons align-middle">edit</span>
+                </a>
+
+            </div>
+            {% else %}
+            <div class="list-group-item-primary list-group-item list-group-item-action text-center">
+                <a href="{% url 'todo_app:sts_invert' task.id %}" class="status uncompleted btn_link"></a>
+                <a href="{% url 'todo_app:task_info' task.id %}" class="stretched-link text-decoration-none text-reset">
+                    {{ task }}
+                </a>
+                <a href="{% url 'todo_app:delete_task' task.id%}" class="close btn_link">
+                  <span aria-hidden="true">&times;</span>
+                </a>
+                <a href="{% url 'todo_app:edit_task' task.id%}" class="mr-3 edit btn_link">
+                    <span class="material-icons align-middle">edit</span>
+                </a>
+
+            </div>
+            {% endif %}
+        {% empty %}
+            <p class="list-group-item">Вы ещё не создали ни одной задачи</p>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'todo_app/base.html' %}
+
+{% block page_header %}
+    <h2>Доступные списки дел:</h2>
+{% endblock page_header %}
+
+{% block content %}
+    <div class="mb-2">
+        <a href="{% url 'todo_app:add_list' %}" class="btn btn-primary">Создать новый список дел</a>
+    </div>
+    <div class="list-group">
+        {% for list in lists %}
+        <div class="list-group-item list-group-item-action">
+            <a class="stretched-link text-decoration-none text-reset" href="{% url 'todo_app:list' list.id %}">
+                {{ list.name }}
+                {% if list.tasks_count > 0 %}
+                    <span class="badge badge-primary badge-pill">{{ list.tasks_count }}</span>
+                {% endif %}
+            </a>
+            <a href="{% url 'todo_app:delete_list' list.id %}" class="close btn_link" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+            </a>
+        </div>
+        {% empty %}
+            <p class="list-group-item">Вы ещё не создали ни один список дел</p>
+        {% endfor %}
+    </div>
+
+
+{% endblock content %}

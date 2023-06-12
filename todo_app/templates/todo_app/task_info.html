@@ -1,0 +1,23 @@
+{% extends 'todo_app/base.html' %}
+
+{% block page_header %}
+    <h5>Назад к <a href="{% url 'todo_app:list' list.id %}">{{ list }}</a></h5>
+{% endblock page_header %}
+
+{% block content %}
+
+    <div class="card text-white bg-primary">
+        <div class="card-header">
+            <h4 class="card-title">{{ task.name }}</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ task.description }}</p>
+            {% if task.description != "" %}
+                <hr>
+            {% endif %}
+            <h6 class="card-title">Создана:</h6>
+            <p class="card-text">{{ task.date_add|date:'M d, Y H:i' }}</p>
+        </div>
+    </div>
+
+{% endblock content %}

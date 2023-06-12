@@ -1,0 +1,43 @@
+.btn_link{
+    z-index: 2;
+    position: relative;
+}
+
+.material-icons{
+    font-size: 18px;
+}
+
+.edit{
+    float: right;
+    color: black;
+    opacity: .5;
+}
+
+.edit:hover{
+    color: black;
+    opacity: 1;
+}
+
+.status {
+    float: left;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.completed{
+    background-color: #35ab4f;
+}
+
+.completed:hover {
+    background-color: #2c8a40;
+}
+
+.uncompleted{
+    background-color: #999;
+}
+
+.uncompleted:hover{
+    background-color: #888;
+}

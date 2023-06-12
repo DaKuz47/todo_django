@@ -1,0 +1,20 @@
+{% extends "todo_app/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h2>Зарегистрируйте новый аккаунт</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'users:register' %}" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">Зарегистироваться</button>
+        {% endbuttons %}
+
+        <input type="hidden" name="next" value="{% url 'todo_app:index' %}" />
+    </form>
+
+{% endblock content %}

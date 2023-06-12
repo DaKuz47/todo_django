@@ -1,0 +1,21 @@
+{% extends "todo_app/base.html" %}
+
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-4">Организуйте свои планы.</h1>
+
+        <p class="lead">Создавайте свои списки с задачами! Будь-то список продуктов или планы на ближайщую неделю.
+            Вы можете удобно делить дела по группам и отслеживать выполненные.
+        </p>
+
+        {% if user.is_authenticated %}
+            <a class="btn btn-lg btn-primary" href="{% url 'todo_app:lists' %}"
+               role="button"> Начать &raquo;
+            </a>
+        {% else %}
+            <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+               role="button"> Начать &raquo;
+            </a>
+        {% endif %}
+    </div>
+{% endblock page_header %}

@@ -1,0 +1,18 @@
+{% extends 'todo_app/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h5>Назад к <a href="{% url 'todo_app:list' list.id %}">{{ list }}</a></h5>
+  <h2>Создайте новую задачу</h2>
+{% endblock page_header %}
+
+{% block content %}
+  <form action="{% url 'todo_app:add_task' list.id %}" method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Создать задачу</button>
+    {% endbuttons %}
+  </form>
+
+{% endblock content %}
